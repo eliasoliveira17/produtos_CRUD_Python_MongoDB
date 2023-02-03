@@ -2,7 +2,6 @@ from bson import errors as berrors
 from bson.objectid import ObjectId
 from pymongo import MongoClient, errors
 
-
 def conectar():
     """
     Função para conectar ao servidor
@@ -55,6 +54,8 @@ def inserir():
     # 'pyMongo' é o nome do banco de dados a ser utilizado
     db = conn.pyMongo
 
+    print('Inserindo produto ...')
+    print('---------------------')
     nome = input("Informe o nome do produto: ")
     preco = float(input("Informe o preço do produto: "))
     estoque = int(input("Informe a quantidade de produtos em estoque: "))
@@ -80,6 +81,9 @@ def atualizar():
     conn = conectar()
     # 'pyMongo' é o nome do banco de dados a ser utilizado
     db = conn.pyMongo
+
+    print('Atualizando produto ...')
+    print('---------------------')
 
     _id = input('Informe o ID do produto: ')
     nome = input('Informe o nome atualizado do produto: ')
@@ -119,6 +123,9 @@ def deletar():
     # 'pyMongo' é o nome do banco de dados a ser utilizado
     db = conn.pyMongo
 
+    print('Deletando produtos ...')
+    print('---------------------')
+
     _id = input('Informe o ID do produto a ser deletado: ')
 
     try:
@@ -147,23 +154,28 @@ def menu():
     """
     Função para gerar o menu inicial
     """
-    print('=========Gerenciamento de Produtos==============')
-    print('Selecione uma opção: ')
-    print('1 - Listar produtos.')
-    print('2 - Inserir produtos.')
-    print('3 - Atualizar produto.')
-    print('4 - Deletar produto.')
-    opcao = int(input())
-    if opcao in [1, 2, 3, 4]:
-        if opcao == 1:
-            listar()
-        elif opcao == 2:
-            inserir()
-        elif opcao == 3:
-            atualizar()
-        elif opcao == 4:
-            deletar()
+    # Operações disponíveis no menu
+    operacoesTxt = ['Listar produtos.', 'Inserir produto.', 'Atualizar produto.', 'Deletar produto.', 'Sair.']
+    # Extração de nomes das funções correspondentes
+    operacoes = [operacao.split()[0].lower() for operacao in operacoesTxt]
+    # Formatação de exibição de texto das operações disponíveis no menu
+    operacoesTxt = [str(it+1) + ' - ' + operacoesTxt[it] for it in range(0,len(operacoesTxt))]
+    
+    opcao = 0
+    # Loop para seleção de operações no menu pelo usuário
+    while(opcao != len(operacoesTxt)):
+        #  Prints das operações dispníveis no terminal
+        print('=========Gerenciamento de Produtos==============')
+        print('Selecione uma opção: ')
+        for operacaoTxt in operacoesTxt:
+            print(operacaoTxt)
+        # Coleta da operação desejada pelo usuário
+        opcao = int(input())
+        # Chamada das funções desejadas pelo usuário
+        if opcao != len(operacoesTxt):
+            globals()[operacoes[opcao-1]]()
+        # Encerramento do loop 
+        elif opcao == len(operacoesTxt):
+                print('*** Saindo ***')
         else:
-            print('Opção inválida')
-    else:
-        print('Opção inválida')
+            print('*** Opção inválida ***')
