@@ -6,11 +6,11 @@ def conectar():
     """
     Função para conectar ao servidor
     """
-    conn = MongoClient('localhost', 27017)
-    return conn
-
     # Não há necessidade de tratamento de excessões nesta etapa.
     # Neste caso, excessões acontecem na tentativa de utilização de conexão ativa
+    
+    conn = MongoClient('localhost', 27017)
+    return conn
 
 def desconectar(conn):
     """ 
@@ -18,7 +18,6 @@ def desconectar(conn):
     """
     if conn:
         conn.close()
-
 
 def listar():
     """
