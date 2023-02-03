@@ -8,7 +8,7 @@ def conectar():
     """
     # Não há necessidade de tratamento de excessões nesta etapa.
     # Neste caso, excessões acontecem na tentativa de utilização de conexão ativa
-    
+
     conn = MongoClient('localhost', 27017)
     return conn
 
@@ -147,7 +147,6 @@ def deletar():
         print(f'ObjectId inválido. Erro: {f}')
 
     desconectar(conn)
-
 
 def menu():
     """
