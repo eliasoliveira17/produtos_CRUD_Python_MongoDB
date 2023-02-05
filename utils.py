@@ -23,6 +23,7 @@ def listar():
     """
     Função para listar os produtos
     """
+    # Definição da conexão
     conn = conectar()
     # 'pyMongo' é o nome do banco de dados a ser utilizado
     db = conn.pyMongo
@@ -49,6 +50,7 @@ def inserir():
     """
     Função para inserir um produto
     """  
+    # Definição da conexão
     conn = conectar()
     # 'pyMongo' é o nome do banco de dados a ser utilizado
     db = conn.pyMongo
@@ -77,6 +79,7 @@ def atualizar():
     """
     Função para atualizar um produto
     """
+    # Definição da conexão
     conn = conectar()
     # 'pyMongo' é o nome do banco de dados a ser utilizado
     db = conn.pyMongo
@@ -118,6 +121,7 @@ def deletar():
     """
     Função para deletar um produto
     """  
+    # Definição da conexão
     conn = conectar()
     # 'pyMongo' é o nome do banco de dados a ser utilizado
     db = conn.pyMongo
